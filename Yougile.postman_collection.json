@@ -1,0 +1,485 @@
+{
+	"info": {
+		"_postman_id": "8e02acde-f1c8-4abc-8be6-c1ba5b537884",
+		"name": "Yougile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43176524"
+	},
+	"item": [
+		{
+			"name": "Receiving",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"login\": \"olin.katya@mail.ru\",\n  \"password\": \"Li_02062015!ry_\",\n  \"name\": \"Karpov\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL1}}/api-v2/auth/companies",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"api-v2",
+						"auth",
+						"companies"
+					]
+				},
+				"description": "Generated from cURL: curl --request POST \\\r\n  --url https://ru.yougile.com/api-v2/auth/companies \\\r\n  --header 'Content-Type: application/json' \\\r\n  --data '{\r\n  \"login\": \"some@example.com\",\r\n  \"password\": \"topsecret\",\r\n  \"name\": \"Газпром\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Receiving Key",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"login\": \"olin.katya@mail.ru\",\r\n  \"password\": \"Li_02062015!ry_\",\r\n  \"companyId\": \"805fb230-5469-4101-9869-83f0c6a98d28\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://ru.yougile.com/api-v2/auth/keys",
+					"protocol": "https",
+					"host": [
+						"ru",
+						"yougile",
+						"com"
+					],
+					"path": [
+						"api-v2",
+						"auth",
+						"keys"
+					]
+				},
+				"description": "Generated from cURL: curl --request POST \\\r\n  --url https://ru.yougile.com/api-v2/auth/keys \\\r\n  --header 'Content-Type: application/json' \\\r\n  --data '{\r\n  \"login\": \"some@example.com\",\r\n  \"password\": \"topsecret\",\r\n  \"companyId\": \"9347006b-dc75-4550-97d5-3008ba00d4a0\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Creating a Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"Prodject ID 2\"\r",
+							"var value = pm.response.json().id \r",
+							"pm.collectionVariables.set(key, value)\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer undefined"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"New title\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL1}}/api-v2/projects",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"api-v2",
+						"projects"
+					]
+				},
+				"description": "Generated from cURL: curl --request POST \\\r\n  --url https://ru.yougile.com/api-v2/projects \\\r\n  --header 'Authorization: Bearer undefined' \\\r\n  --header 'Content-Type: application/json' \\\r\n  --data '{\r\n  \"title\": \"ГосУслуги\",\r\n  \"users\": {\r\n    \"4902b994-b806-4af4-acec-018ea5ea6468\": \"worker\",\r\n    \"8aeaeb9d-f94e-4c66-96d3-eb8d96fe7018\": \"ee88efd5-5cb2-41a0-9ea2-295da25863d4\"\r\n  }\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"Board ID\"\r",
+							"var value = pm.response.json().id \r",
+							"pm.collectionVariables.set(key, value)\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer undefined"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"New Board\",\n  \"projectId\": \"{{Prodject ID 2}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL1}}/api-v2/boards",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"api-v2",
+						"boards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creating a Column",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var key = \"Column ID\"\r",
+							"var value = pm.response.json().id \r",
+							"pm.collectionVariables.set(key, value)\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 5000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer undefined"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"New column\",\n  \"boardId\": \"{{Board ID}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL1}}/api-v2/columns",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"api-v2",
+						"columns"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get project ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer undefined"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://ru.yougile.com/api-v2/projects/{{Prodject ID 2}}",
+					"protocol": "https",
+					"host": [
+						"ru",
+						"yougile",
+						"com"
+					],
+					"path": [
+						"api-v2",
+						"projects",
+						"{{Prodject ID 2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Board",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer undefined"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://ru.yougile.com/api-v2/boards/{{Board ID}}",
+					"protocol": "https",
+					"host": [
+						"ru",
+						"yougile",
+						"com"
+					],
+					"path": [
+						"api-v2",
+						"boards",
+						"{{Board ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Column",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer undefined"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://ru.yougile.com/api-v2/columns/{{Column ID}}",
+					"protocol": "https",
+					"host": [
+						"ru",
+						"yougile",
+						"com"
+					],
+					"path": [
+						"api-v2",
+						"columns",
+						"{{Column ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit board",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer undefined"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"deleted\": false,\n  \"title\": \"New Board 2\",\n  \"projectId\": \"{{Prodject ID 2}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL1}}/api-v2/boards/{{Board ID}}",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"api-v2",
+						"boards",
+						"{{Board ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit column",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer undefined"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"deleted\": false,\n  \"title\": \"Very cool\",\n  \"boardId\": \"{{Board ID}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL1}}/api-v2/columns/{{Column ID}}",
+					"host": [
+						"{{baseURL1}}"
+					],
+					"path": [
+						"api-v2",
+						"columns",
+						"{{Column ID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{key}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL1",
+			"value": "https://ru.yougile.com",
+			"type": "string"
+		},
+		{
+			"key": "key",
+			"value": "M5NS2KBHj6Y8s7wM-yoHaPDYlWUiJx74VJCe+RbPiancrXKPkRZVB7EoYd8FhOD0",
+			"type": "string"
+		},
+		{
+			"key": "Prodject ID 2",
+			"value": ""
+		},
+		{
+			"key": "Board ID",
+			"value": ""
+		},
+		{
+			"key": "Column ID",
+			"value": ""
+		}
+	]
+}
